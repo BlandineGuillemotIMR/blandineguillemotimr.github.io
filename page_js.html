@@ -5,6 +5,7 @@
 
     <title>JS : Mes travaux en Technologies Web - Blandine Guillemot </title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <SCRIPT LANGUAGE="Javascript" SRC="./geometrie/point.js"> </SCRIPT>
 
     <script type="text/javascript">
       /*faireUneAlerte();*/
@@ -31,17 +32,30 @@
       fonction1();
       fonction2(a);*/
 
-      function init()
+      /*function init()
       {
         laDiv1=document.createElement('div');
         laDiv1.setAttribute('id','div1');
         laDiv2=document.getElementById('div2');
         laDiv2.appendChild(laDiv1);
+      }*/
+      function init()
+      {
+        canvas = document.getElementById('myCanvas');
+        for(i=1;i<10;i++)
+        {
+          for(j=1;j<10;j++)
+          {
+            point1 = new point(20∗i,20∗j,canvas);
+            point1.affiche();
+          }
+        }
       }
+
     </script>
   </head>
 
-  <body onload="init()"> <!-- onload="faireUneAlerte()" >-->
+  <body onload='init()'> <!-- onload="faireUneAlerte()" >-->
     <header>
       <h1>JS</h1>
     </header>
@@ -59,7 +73,7 @@
      <main>
       <article>
         <h2>Mes travaux en Javascript</h2>
-        <div id='div2'></div>
+        <canvas id="myCanvas" width="200" height="200"/>
 
       </article>
 
