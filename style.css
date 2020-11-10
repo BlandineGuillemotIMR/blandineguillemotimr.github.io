@@ -56,6 +56,17 @@ p, li {
   line-height: 1.5;
 }
 
+a {
+  color: white;
+  background-color: #f5edbf;
+  text-shadow: 1px 2px 3px #232175;
+}
+
+a:hover {
+  background-color: white;
+  text-shadow: 1px 2px 7px #232175;
+}
+
 /* || header layout */
 
 nav, article, aside, footer {
@@ -96,6 +107,8 @@ nav a {
   text-transform: uppercase;
   text-decoration: none;
   color: black;
+  background-color: transparent !important;
+  text-shadow: none !important;
 }
 
 nav form {

@@ -5,28 +5,6 @@
 
     <title>JS : Mes travaux en Technologies Web - Blandine Guillemot </title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript">
-      function init()
-      {
-        compteur = 10;
-        document.getElementById("reset").disabled = true;
-        var delay = 1000;
-        var intervalID = setInterval(() => {
-          if ( compteur > 0)
-          {
-            compteur = --compteur;
-            console.log(compteur);
-            document.getElementById("compteur").innerHTML = compteur;
-          }
-          else
-          {
-            clearInterval(this);
-            document.getElementById("reset").disabled = false;
-          }
-        }, delay);
-     }
-      window.addEventListener('load', init)
-    </script>
   </head>
 
   <body>
@@ -47,15 +25,17 @@
      <main>
       <article>
         <h2>Mes travaux en Javascript</h2>
-        <div id="compteur" width="200" height="200">10</div>
-        <button disabled id="reset" onclick="init()">Recommencer</button>
+        <ul>
+          <li><a href="./js/compteur.html">Exo 1 - Compteur</a></li>
+          <li><a href="./js/carreMvt.html">Exo 2 - Carré en mouvement</a></li>
+        </ul>
       </article>
 
       <aside>
         <h2>En relation</h2>
         <ul>
-          <li><a href="#"></a>relation1</li>
-          <li><a href="#"></a>relation2</li>
+          <li><a href="./js/compteur.html">Exo 1 - Compteur</li>
+          <li><a href="./js/carreMvt.html">Exo 2 - Carré en mouvement</li>
           <li><a href="#"></a>relation3</li>
           <li><a href="#"></a>relation4</li>
         </ul>
