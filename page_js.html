@@ -5,23 +5,25 @@
 
     <title>JS : Mes travaux en Technologies Web - Blandine Guillemot </title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="./compteur/compte.js"></script> 
     <script type="text/javascript">
       function init()
       {
-        compteur = document.getElementById('compteur').innerHTML;
-        delay = 1000;
-        while(compteur.innerHTML !== 0)
-        {
-          var intervalID = scope.setInterval({
-            if ( compteur > 0)
-            {
-              compteur = --compteur;
-            }
-          }, delay);
-        }
-        scope.clearInterval(intervalID);
-      }
+        compteur = 10;
+        var delay = 1000;
+        var intervalID = setInterval(() => {
+          if ( compteur > 0)
+          {
+            compteur = --compteur;
+            console.log(compteur);
+            document.getElementById("compteur").innerHTML = compteur;
+          }
+          else
+          {
+            clearInterval(this);
+            document.getElementById("reset").disabled = false;
+          }
+        }, delay);
+     }
       window.addEventListener('load', init)
     </script>
   </head>
@@ -45,7 +47,7 @@
       <article>
         <h2>Mes travaux en Javascript</h2>
         <div id="compteur" width="200" height="200">10</div>
-
+        <button disabled id="reset" onclick="init()">Recommencer</button>
       </article>
 
       <aside>
