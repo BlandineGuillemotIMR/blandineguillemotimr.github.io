@@ -5,57 +5,28 @@
 
     <title>JS : Mes travaux en Technologies Web - Blandine Guillemot </title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <SCRIPT LANGUAGE="Javascript" SRC="./geometrie/point.js"> </SCRIPT>
-
+    <script type="text/javascript" src="./compteur/compte.js"></script> 
     <script type="text/javascript">
-      /*faireUneAlerte();*/
-      /*function faireUneAlerte()
-      {
-        alert("bonjour le monde");
-      }
-      window.onload=faireUneAlerte();*/
-
-      /*var a = 1;
-      var b = "x";
-      c = 3;
-      function fonction1()
-      {
-      var a =2;
-      b = 3;
-      c= 1;
-      alert("fonction1 : a vaut "+a+", b vaut "+b+" et c vaut "+c);
-      }
-      function fonction2(d)
-      {
-      alert("fonction2 :a vaut "+a+", b vaut "+b+", c vaut "+c+" et d vaut "+d);
-      }
-      fonction1();
-      fonction2(a);*/
-
-      /*function init()
-      {
-        laDiv1=document.createElement('div');
-        laDiv1.setAttribute('id','div1');
-        laDiv2=document.getElementById('div2');
-        laDiv2.appendChild(laDiv1);
-      }*/
       function init()
       {
-        canvas = document.getElementById('myCanvas');
-        for(i=1;i<10;i++)
+        compteur = document.getElementById('compteur').innerHTML;
+        delay = 1000;
+        while(compteur.innerHTML !== 0)
         {
-          for(j=1;j<10;j++)
-          {
-            point1 = new point(20∗i,20∗j,canvas);
-            point1.affiche();
-          }
+          var intervalID = scope.setInterval({
+            if ( compteur > 0)
+            {
+              compteur = --compteur;
+            }
+          }, delay);
         }
+        scope.clearInterval(intervalID);
       }
-
+      window.addEventListener('load', init)
     </script>
   </head>
 
-  <body onload='init()'> <!-- onload="faireUneAlerte()" >-->
+  <body>
     <header>
       <h1>JS</h1>
     </header>
@@ -73,7 +44,7 @@
      <main>
       <article>
         <h2>Mes travaux en Javascript</h2>
-        <canvas id="myCanvas" width="200" height="200"/>
+        <div id="compteur" width="200" height="200">10</div>
 
       </article>
 

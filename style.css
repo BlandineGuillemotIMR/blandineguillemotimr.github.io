@@ -165,3 +165,8 @@ aside li {
 footer {
   margin-top: 10px;
 }
+
+#compteur {
+  font-size: 3em;
+  text-align: center;
+}
