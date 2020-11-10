@@ -5,27 +5,34 @@
 
     <title>JS : Mes travaux en Technologies Web - Blandine Guillemot </title>
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <script type="text/javascript">
-      function init()
-      {
-        compteur = 10;
-        document.getElementById("reset").disabled = true;
-        var delay = 1000;
+    <script>
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      async function canvasInit(){
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#FF0000";
+        var x = 0;
+        ctx.fillRect(x, 0, 50, 50);
+
+        await sleep(2000);
+        var delay = 100;
         var intervalID = setInterval(() => {
-        if ( compteur > 0)
+        if ( x < 150)
         {
-          compteur = --compteur;
-          console.log(compteur);
-          document.getElementById("compteur").innerHTML = compteur;
+          ctx.clearRect(x, 0, 50, 50);
+          x = ++x;
+          ctx.fillRect(x, 0, 50, 50);
         }
         else
         {
           clearInterval(this);
-          document.getElementById("reset").disabled = false;
         }
         }, delay);
-     }
-      window.addEventListener('load', init)
+      }
+      window.addEventListener('load', canvasInit)
     </script>
   </head>
 
@@ -47,17 +54,16 @@
      <main>
       <article>
         <h2>Mes travaux en Javascript</h2>
-        <p>Produisez une page html "tp1.html" présentant un compteur initialisé à 10 secondes et comptant à rebours, à raison d’une unité par seconde. </br> Le décompte doit s’arrêter à 0 secondes. Vous utiliserez pour cela la fonction setInterval et clearInterval.</p>
-        <div id="compteur" width="200" height="200">10</div>
-        <button disabled id="reset" onclick="init()">Recommencer</button>
+        <p>Produisez une page html présentant un carré rouge se déplaçant du bord gauche d'un canevas vers le bord droit à raison de 10 pixels par dixième de seconde. Le carré débutera son déplacement 2 secondes après la fin du chargement de la page.</p>
+        <canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;"></canvas>
       </article>
 
       <aside>
         <h2>En relation</h2>
         <ul>
           <li><a href="../page_js.html">JS - principale</a></li>
-          <li><a href="./carreMvt.html">Exo 2 - Mouvement du carré</a></li>
-          <li><a href="./carreMvt2.html">Exo 3 - Carré dormant</a></li>
+          <li><a href="./compteur.html">Exo 1 - Compteur</a></li>
+          <li><a href="./carreMvt.html">Exo 2 - Carré en mouvement</a></li>
           <li><a href="#"></a>relation4</li>
         </ul>
       </aside>
