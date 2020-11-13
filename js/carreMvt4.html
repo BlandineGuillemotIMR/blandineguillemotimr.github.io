@@ -10,21 +10,19 @@
         return new Promise(resolve => setTimeout(resolve, ms));
       }
 
-      async function canvasInit(){
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#FF0000";
+      async function canvasInit(posY, retard, ctx){
         var x = 0;
-        ctx.fillRect(x, 0, 50, 50);
+        ctx.fillRect(x, posY, 50, 50);
 
-        await sleep(2000);
+        retard = retard*1000;
+        await sleep(retard);
         var delay = 100;
         var intervalID = setInterval(() => {
         if ( x < 150)
         {
-          ctx.clearRect(x, 0, 50, 50);
+          ctx.clearRect(x, posY, 50, 50);
           x = ++x;
-          ctx.fillRect(x, 0, 50, 50);
+          ctx.fillRect(x, posY, 50, 50);
         }
         else
         {
@@ -32,7 +30,20 @@
         }
         }, delay);
       }
-      window.addEventListener('load', canvasInit)
+
+      function init(){
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#FF0000";
+        var pos = 0;
+        var delay = 4;
+        for (var i = 1; i <= 10; i++) {
+          canvasInit(pos, delay, ctx);
+          pos = pos + 50;
+          delay = delay + 1;
+        }
+      }
+      window.addEventListener('load', init)
     </script>
   </head>
 
@@ -53,9 +64,9 @@
 
      <main>
       <article>
-        <h2>Exercice 2 : Carré en mouvement</h2>
-        <p>Produisez une page html présentant un carré rouge se déplaçant du bord gauche d'un canevas vers le bord droit à raison de 10 pixels par dixième de seconde. Le carré débutera son déplacement 2 secondes après la fin du chargement de la page.</p>
-        <canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;"></canvas>
+        <h2>Exercice 5 : Dix carrés dormant</h2>
+        <p>Produisez une page html présentant 10 carrés rouges se déplaçant du bord gauche du canevas vers le bord droit à raison de 10 pixels par dixième de seconde. Les départs des carrés seront espacés de 1 seconde, 4 secondes après la fin du chargement de la page. Organisez le code pour avoir le moins de répétition de code possible.</p>
+        <canvas id="myCanvas" width="200" height="500" style="border:1px solid #c3c3c3;"></canvas>
       </article>
 
       <aside>
@@ -63,9 +74,9 @@
         <ul>
           <li><a href="../page_js.html">JS - principale</a></li>
           <li><a href="./compteur.html">Exo 1 - Compteur</a></li>
-          <li><a href="./carreMvt.html">Exo 3 - Carré en mouvement</a></li>
+          <li><a href="./carreMvt.html">Exo 2 - Carré en mouvement</a></li>
+          <li><a href="./carreMvt2.html">Exo 3 - Carré dormant</a></li>
           <li><a href="./carreMvt3.html">Exo 4 - Carré triple dormant</a></li>
-          <li><a href="./carreMvt4.html">Exo 5 - Dix carrés dormant</a></li>
         </ul>
       </aside>
 
