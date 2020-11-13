@@ -6,20 +6,25 @@
     <title>JS : Mes travaux en Technologies Web - Blandine Guillemot </title>
     <link rel="stylesheet" type="text/css" href="../style.css">
     <script>
-      function canvasInit(){
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      async function canvasInit(posY, retard){
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
         ctx.fillStyle = "#FF0000";
         var x = 0;
-        ctx.fillRect(x, 0, 50, 50);
+        ctx.fillRect(x, posY, 50, 50);
 
+        await sleep(retard);
         var delay = 100;
         var intervalID = setInterval(() => {
         if ( x < 150)
         {
-          ctx.clearRect(x, 0, 50, 50);
+          ctx.clearRect(x, posY, 50, 50);
           x = ++x;
-          ctx.fillRect(x, 0, 50, 50);
+          ctx.fillRect(x, posY, 50, 50);
         }
         else
         {
@@ -27,7 +32,13 @@
         }
         }, delay);
       }
-      window.addEventListener('load', canvasInit)
+
+      function init(){
+        canvasInit(0, 4000);
+        canvasInit(50, 5000);
+        canvasInit(100, 6000);
+      }
+      window.addEventListener('load', init)
     </script>
   </head>
 
@@ -49,8 +60,9 @@
      <main>
       <article>
         <h2>Mes travaux en Javascript</h2>
-        <p>Produisez une page html "tp2.html" présentant un carré rouge se déplaçant du bord gauche d'un canevas vers le bord droit à raison de 10 pixels par dixième de seconde.</p>
-        <canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;"></canvas>
+        <h3>WIP</h3>
+        <p>Produisez une page html présentant 3 carrés rouges se déplaçant du bord gauche du canvas vers le bord droit à raison de 10 pixels par dixième de seconde. Les départs des carrés seront espacés de 1 seconde, 4 secondes après la fin du chargement de la page.</p>
+        <canvas id="myCanvas" width="200" height="150" style="border:1px solid #c3c3c3;"></canvas>
       </article>
 
       <aside>
@@ -58,9 +70,7 @@
         <ul>
           <li><a href="../page_js.html">JS - principale</a></li>
           <li><a href="./compteur.html">Exo 1 - Compteur</a></li>
-          <li><a href="./carreMvt2.html">Exo 3 - Carré dormant</a></li>
-          <li><a href="./carreMvt3.html">Exo 4 - Carré triple dormant</a></li>
-          <li><a href="#"></a>relation4</li>
+          <li><a href="./carreMvt.html">Exo 2 - Carré en mouvement</a></li>
         </ul>
       </aside>
 
