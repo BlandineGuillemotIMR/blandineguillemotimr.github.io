@@ -183,3 +183,10 @@ footer {
   font-size: 3em;
   text-align: center;
 }
+
+#animatedElem {
+  position: fixed;
+  background-color: red;
+  height: 50px;
+  width: 50px;
+}
