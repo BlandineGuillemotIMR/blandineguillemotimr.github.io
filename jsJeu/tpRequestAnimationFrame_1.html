@@ -19,6 +19,7 @@
         var elem = document.getElementById("animatedElem");
         var left = 0;
         var timer;
+        pausecomp(2000);
         // Move the element 10px on the right every 16ms
         timer = setInterval(function() {
           elem.style.left = ( left += 10 ) + "px";
@@ -57,14 +58,15 @@
       <aside>
         <h2>En relation</h2>
         <ul>
-          <li><a href="../page_js.html">JS - principale</a></li>
+          <li><a href="../page_js_jeu.html">Application web "jeu vidéo"</li>
+          <li><a href="./tpRequestAnimationFrame_2.html">Test 2 : Passer de setInterval à RequestAnimation</a></li>
         </ul>
       </aside>
 
     </main>
 
     <footer>
-      <p>©Copyright ... </p>
+      <p>©Copyright Blandine Guillemot</p>    
     </footer>
 
   </body>

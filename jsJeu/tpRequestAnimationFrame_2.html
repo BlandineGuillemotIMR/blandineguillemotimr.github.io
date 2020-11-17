@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>JS : Mes travaux en Technologies Web - Blandine Guillemot </title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script>
+      function pausecomp(millis) 
+      {
+        var date = new Date();
+        var curDate = null;
+        do { 
+          curDate = new Date(); 
+        } while(curDate-date < millis);
+      }
+
+      function canvasInit(){
+        var elem = document.getElementById("animatedElem");
+        var left = 0;
+        var timer;
+        pausecomp(2000);
+        // Move the element 10px on the right every 16ms
+        timer = setInterval(function() {
+          elem.style.left = ( left += 10 ) + "px";
+          // clear the timer at 400px to stop the animation
+          if ( left > 400 ) {
+            clearInterval( timer );
+          }
+        }, 16);
+      }
+      window.addEventListener('load', canvasInit)
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h1>JS</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../page_html.html">HTML</a></li>
+        <li><a href="../page_js.html">JS</a></li>
+        <li><a href="../page_php.html">PHP</a></li>
+        <li><a href="../page_vue.html">Vue</a></li>
+      </ul>
+     </nav>
+
+     <main>
+      <article>
+        <h2>Tp requestAnimationFrame</h2>
+        <h3>WIP</h3>
+        <div id="animatedElem"></div>
+      </article>
+
+      <aside>
+        <h2>En relation</h2>
+        <ul>
+          <li><a href="../page_js_jeu.html">Application web "jeu vidéo"</li>
+          <li><a href="./tpRequestAnimationFrame_1.html">Test 1 : Passer de setInterval à RequestAnimation</a></li>            
+        </ul>
+      </aside>
+
+    </main>
+
+    <footer>
+      <p>©Copyright Blandine Guillemot</p>
+    </footer>
+
+  </body>
+</html>
