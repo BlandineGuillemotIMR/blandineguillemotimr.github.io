@@ -175,6 +175,20 @@ aside li {
   padding-bottom: 10px;
 }
 
+aside a {
+  outline: none;
+  text-decoration: none;
+}
+
+aside a:link, aside a:visited {
+  color: #689496;
+}
+
+aside a:hover {
+  border-bottom: 1px solid;
+  background: #CEECED;
+}
+
 footer {
   margin-top: 10px;
 }
