@@ -12,20 +12,20 @@
         document.getElementById("reset").disabled = true;
         var delay = 1000;
         var intervalID = setInterval(() => {
-        if ( compteur > 0)
-        {
-          compteur = --compteur;
-          console.log(compteur);
-          document.getElementById("compteur").innerHTML = compteur;
-        }
-        else
-        {
-          clearInterval(this);
-          document.getElementById("reset").disabled = false;
-        }
+          if ( compteur > 0)
+          {
+            compteur = --compteur;
+            //console.log(compteur);
+            document.getElementById("compteur").innerHTML = compteur;
+          }
+          else
+          {
+            clearInterval(intervalID);
+            document.getElementById("reset").disabled = false;
+          }
         }, delay);
      }
-      window.addEventListener('load', init)
+      window.addEventListener('load', init);
     </script>
   </head>
 
