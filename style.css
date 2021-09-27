@@ -1,6 +1,7 @@
 /* || General setup */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Spectral+SC&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css');
 
 html, body {
   margin: 0;
@@ -16,6 +17,7 @@ html {
 body {
   width: 70%;
   margin: 0 auto;
+  background-color: transparent !important;
 }
 
 /* || typography */
@@ -96,19 +98,21 @@ nav li {
   flex: 1;
 }
 
-nav li:hover {
-  background-image: linear-gradient(to right, transparent, #f5edbf, transparent);
-  transition-duration: 5s;
-}
-
 nav a {
   display: inline-block;
   font-size: 2rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: black;
+  color: #f4edbe;
   background-color: transparent !important;
-  text-shadow: none !important;
+  text-shadow: 1px 2px #00000038;
+  transition-duration: 1s;
+}
+
+nav a:hover {
+    color: #f4edbe !important;
+    text-shadow: none;
+    font-size: 1.5em !important;
 }
 
 nav form {
@@ -150,10 +154,18 @@ article {
   flex: 4;
 }
 
+a {
+    transition-duration: 0.5s;
+}
+
+a:hover {
+  color: black !important;
+}
+
 aside {
   flex: 1;
   margin-left: 10px;
-  background-color: #80f0ff;
+  background-color: #b1dee4e8;
   box-shadow: #0a0a0aad 5px 5px 8px 0px;
 }
 
@@ -177,6 +189,7 @@ aside li {
 
 aside a:hover {
   background: #80f0ff;
+  color: white !important;
 }
 
 footer {
