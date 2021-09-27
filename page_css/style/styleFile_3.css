@@ -23,35 +23,64 @@ html, body {
 }
 
 @keyframes earth {
-    0%   {top: 0px;}
-    25%  {
-        top: 400px;
-        right: 140px;
+    0%   {
+        top: -70px;
+        right: 200px;
+    }
+    10%  {
+        top: 28px;
+        right: 300px;
+    }
+    20%  {
+        top: 126px;
+        right: 400px;
+
+    }
+    30%  {
+        top: 224px;
+        right: 300px;
+    }
+    40%  {
+        top: 322px;
+        right: 200px;
     }
     50%  {
-        top: 150px;
+        top: 420px;
+        right: 100px;
+    }
+    60%  {
+        top: 322px;
+        right: 0px;
+    }
+    70% {
+        top: 224px;
         right: -100px;
     }
-    75% {
-        top: -50px;
-        right: 140px;
+    80%  {
+        top: 126px;
+        right: 0px;
+    }
+    90%  {
+        top: 28px;
+        right: 100px;
     }
     100% {
-        top: -150px;
-        right: 0px;
+        top: -70px;
+        right: 200px;
     }
 }
 
 #earth {
     position: absolute;
-    top: 0px;
-    
+    top: -70px;
+    right: 140px;
     height: 160px;
     width: 213px;
     background: url("../images/Earth_line.png");
     background-position:  0px 0px;
     animation-name: earth;
     animation-duration: 4s;
+    animation-timing-function: linear;
 }
 
 

@@ -12,12 +12,17 @@
     var aCanvas;
     var player;
     var ctx;
+    var btnPlayer, btnShow;
     function init()
     {
       aCanvas = document.getElementById('myCanvas');
       ctx = aCanvas.getContext("2d");
       ctx.fillStyle = "#FF0000";
       player = document.getElementById("player");
+      btnPlayer = document.getElementById("btnPlay");
+      btnShow = document.getElementById("btnShow");
+      btnPlayer.addEventListener('click', actionAudio);
+      btnShow.addEventListener('click', afficheControls);
     }
     function updateCanvas(){
       x = (player.currentTime/player.duration)*(2 * Math.PI);
@@ -28,7 +33,6 @@
       ctx.stroke();
     }
     function actionAudio(){
-      var btnPlayer = document.getElementById("btnPlay");
       if(btnPlayer.textContent === "Play"){
         if(player.ended){
           player.load();
@@ -42,11 +46,10 @@
     }
 
     function finAudio(){
-      document.getElementById("btnPlay").textContent = "Play";
+      btnPlayer.textContent = "Play";
     }
 
     function afficheControls(){
-      var btnShow = document.getElementById("btnShow");
       if(btnShow.textContent.includes("Afficher")){
         player.controls = true;
         btnShow.textContent = "Cacher les contrôles";
@@ -56,7 +59,7 @@
       }
     }
     window.addEventListener('load', init)
-    </script>
+</script>
 
 <body>
 <header>
@@ -86,8 +89,8 @@
       Your browser does not support HTML5 audio.
     </audio>
     <canvas id="myCanvas" width="200" height="200"></canvas>
-    <button id="btnPlay" onclick="actionAudio()">Play</button>
-    <button id="btnShow" onclick="afficheControls()">Afficher les contrôles</button>
+    <button id="btnPlay">Play</button>
+    <button id="btnShow">Afficher les contrôles</button>
   </article>
 
   <aside>
