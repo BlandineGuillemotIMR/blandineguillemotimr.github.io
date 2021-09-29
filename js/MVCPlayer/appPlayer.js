@@ -17,29 +17,29 @@ function AudioModel() {
              type: "MP3",
         }
         ];
-    this. getAllAudios = function(){
+    this. getAllAudio = function(){
         return this.audiofilesData;
     }
 }
 
 
 // ============== View =========================
-function AudiosView() {
+function AudioView() {
     this.init = function() {
         this.renderAudioListModule();
     }
     this.renderAudioListModule = function() {
-        //get all audios and assign to audios 
-        var audios = AudiosApp.getAudios();// cache #audio-list DOM 
+        //get all audio and assign to audio 
+        var audio = AudioApp.getAudio();// cache #audio-list DOM 
         var $audioDivUI = document.getElementById('audio-list');// clear HTML from the DOM 
         var $audioListUI = document.createElement('ul');
         $audioDivUI.replaceChildren($audioListUI);
         $audioListUI.innerHTML = '';
-        for (var i = 0, len = audios.length; i < len; i++) {
+        for (var i = 0, len = audio.length; i < len; i++) {
             var $li = document.createElement('li');
             $li.setAttribute('class', 'audio-list-item');
             $li.setAttribute('data-index', i);
-            $li.innerHTML = audios[i]['aname']+', '+audios[i]['length'];
+            $li.innerHTML = audio[i]['aname']+', '+audio[i]['length'];
             $audioListUI.append($li);
         }
     }
@@ -47,22 +47,22 @@ function AudiosView() {
 
 
 //================ Controller ==================
-function AudiosCtrl (AudiosView, AudioModel) {
-    this.audiosView = AudiosView;
+function AudioCtrl (AudioView, AudioModel) {
+    this.audioView = AudioView;
     this.audioModel = AudioModel;
 
     this.init = function() {
-        this.AudiosView.init();
+        this.AudioView.init();
     }
-    this.getAudios = function() {
-        return this.AudioModel.getAllAudios();
+    this.getAudio = function() {
+        return this.AudioModel.getAllAudio();
     }
 }
 
 
-const AudiosView = new AudiosView();
+const AudioView = new AudioView();
 const AudioModel = new AudioModel();
-const AudiosApp = new AudiosCtrl(AudiosView,AudioModel);
+const AudioApp = new AudioCtrl(AudioView,AudioModel);
 
 
-window.addEventListener("DOMContentLoaded",function(){AudiosApp.init()});
+window.addEventListener("DOMContentLoaded",function(){AudioApp.init()});
