@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Jeu (V2)</title>
+    </head>
+    <body>
+    <CANVAS WIDTH="500" HEIGHT="400" ID="myCanvas" tabindex="0" style="border-style: solid; border-width: 2px; width: 500px;">
+        Canvas tag not supported
+    </CANVAS>
+    </body>
+<script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    const WIDTH_CANVAS = canvas.width;
+    const HEIGHT_CANVAS = canvas.height;
+    const TAILLE_CHAR = 128;
+    const CHAR_FACE = TAILLE_CHAR*2;
+    const CHAR_DROIT = TAILLE_CHAR;
+    const CHAR_GAUCHE = 0;
+    const CHAR_DOS = TAILLE_CHAR*3;
+    
+    //VAR DE GESTION
+    //position
+    var x = 0;
+    var y = 50;
+    //position dans image
+    var xImg = 0;
+    var yImg = CHAR_FACE;
+    //gestion du jeu
+    var gameLoop;
+    var cptGame=0;
+    var cptLoop=0;
+    var stepChar=0;
+    //tab des actions
+    var keyStroke = new Array();
+
+    //IMAGE DU HERO
+    var character;
+
+    /*document.getElementById("myCanvas").addEventListener("mousedown", doMouseDown,false);
+    function doMouseDown(event){
+        x = event.clientX;
+        ctx.fillRect(x, y, 50, 50);
+    }*/
+
+    function init(){
+        let imageOk = false;
+        character = new Image();
+        character.src = "./hero_walk_cycle.png";
+
+        function imageLoaded(){
+            console.log("Image Loaded");
+            imageOk = true;
+            fireEvent();
+        }
+
+        function launchGame(){
+            gameLoop = setInterval(playGame,30);
+        }
+
+        function fireEvent(){
+            if(imageOk){
+                window.dispatchEvent(new Event('allImagesOk'));
+            }
+        }
+
+        character.addEventListener('load', imageLoaded);
+        window.addEventListener('allImagesOk',launchGame);
+    }
+
+    function playGame(){
+        clearGame();
+        updateGame();
+        drawGame();
+    }
+
+    //efface le canvas
+    function clearGame(){
+        canvas.width = canvas.width;
+    }
+
+    //maj des valeurs
+    //direction
+    //etape de la marche
+    async function updateGame(){
+        var press = false;
+        //modifier univers en fct du keyStroke
+        if(keyStroke["up"] === true){
+            press=true;
+            if(y < TAILLE_CHAR*-1)
+                y = HEIGHT_CANVAS;
+            y -= 10;
+        }
+        if(keyStroke["down"] === true){
+            press=true;
+            if(y > HEIGHT_CANVAS)
+                y = TAILLE_CHAR*-1;
+            y += 10;
+        }
+        if(keyStroke["left"] === true){
+            press=true;
+            if(x < TAILLE_CHAR*-1)
+                x = WIDTH_CANVAS;
+            x -= 10;
+        }
+        if(keyStroke["right"] === true){
+            press=true;
+            if(x > WIDTH_CANVAS)
+                x = TAILLE_CHAR*-1;
+            x += 10;
+        }
+        //var pause = 1;
+        //await sleep(pause*500);
+        walkCycle(press, keyStroke["up"],keyStroke["down"],keyStroke["left"],keyStroke["right"]);
+
+        keyStroke["up"] = false;
+        keyStroke["down"] = false;
+        keyStroke["left"] = false;
+        keyStroke["right"] = false;
+        press = false;
+        //RAZ du keyStroke
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function walkCycle(press, u,d,l,r) {
+        if(u)
+            yImg = CHAR_DOS;
+        if(d)
+            yImg = CHAR_FACE;
+        if(l)
+            yImg = CHAR_GAUCHE;
+        if(r)
+            yImg = CHAR_DROIT;
+
+        if(press){
+            xImg += TAILLE_CHAR;
+            if(xImg >= 4*TAILLE_CHAR)
+                xImg = 0;
+        }
+
+    }
+
+    //dessin sur le canvas
+    function drawGame(){
+        //ctx.fillRect(x, y, 50, 50);
+        ctx.drawImage(character, xImg, yImg, 128, 128, x, y, 128, 128);
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+
+    window.addEventListener("keydown", doKeyDown);
+
+    function doKeyDown(event) {
+      var press = false;
+      if (event.defaultPrevented) {
+        return; // Should do nothing if the key event was already consumed.
+      }
+
+      switch (event.key) {
+        case "ArrowUp":
+          keyStroke["up"]=true;
+          break;
+        case "ArrowDown":
+          keyStroke["down"]=true;
+          break;
+        case "ArrowLeft":
+          keyStroke["left"]=true;
+          break;
+        case "ArrowRight":
+          keyStroke["right"]=true;
+          break;
+        case "Enter":
+          // Do something for "enter" or "return" key press.
+          break;
+        case "Escape":
+          // Do something for "esc" key press.
+          break;
+        default:
+          return; // Quit when this doesn't handle the key event.
+      }
+
+      // Consume the event for suppressing "double action".
+      event.preventDefault();
+    }
+    </script>

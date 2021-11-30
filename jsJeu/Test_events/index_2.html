@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Jeu (V1)</title>
+    </head>
+    <body>
+    <CANVAS WIDTH="500" HEIGHT="400" ID="myCanvas" tabindex="0" style="border-style: solid; border-width: 2px; width: 500px;">
+        Canvas tag not supported
+    </CANVAS>
+    </body>
+<script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    const TAILLE_CHAR = 128;
+    const CHAR_FACE = TAILLE_CHAR*2;
+    const CHAR_DROIT = TAILLE_CHAR;
+    const CHAR_GAUCHE = 0;
+    const CHAR_DOS = TAILLE_CHAR*3;
+    var x = 0;
+    var y = 350;
+    var xChar = 0;
+    var yChar = CHAR_FACE;
+    var gameLoop;
+    var cptGame=0;
+    var cptLoop=0;
+
+    var character;
+
+    document.getElementById("myCanvas").addEventListener("mousedown", doMouseDown,false);
+    function doMouseDown(event){
+        clearCanvas();
+        x = event.clientX;
+        ctx.fillRect(x, y, 50, 50);
+    }
+
+    function init(){
+        let imageOk = false;
+        character = new Image();
+        character.src = "./hero_walk_cycle.png";
+
+        function imageLoaded(){
+            console.log("Image Loaded");
+            imageOk = true;
+            fireEvent();
+        }
+
+        function launchGame(){
+            gameLoop = setInterval(playGame,1000);
+        }
+
+        function fireEvent(){
+            if(imageOk){
+                window.dispatchEvent(new Event('allImagesOk'));
+            }
+        }
+
+        character.addEventListener('load', imageLoaded);
+        window.addEventListener('allImagesOk',launchGame);
+    }
+
+    function playGame(){
+        //ctx.fillRect(x, y, 50, 50);
+        ctx.drawImage(character, xChar, yChar, 128, 128, x, y, 128, 128);
+    }
+
+    function clearCanvas() {
+        canvas.width = canvas.width;
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+
+    window.addEventListener("keydown", function (event) {
+      if (event.defaultPrevented) {
+        return; // Should do nothing if the key event was already consumed.
+      }
+
+      switch (event.key) {
+        case "ArrowUp":
+          clearCanvas();
+          y = y - 10;
+          xChar += TAILLE_CHAR;
+          yChar = CHAR_DOS;
+          if(xChar >= 4*TAILLE_CHAR)
+            xChar = 0;
+          //ctx.fillRect(x, y, 50, 50);
+          ctx.drawImage(character, xChar, yChar, 128, 128, x, y, 128, 128);
+          break;
+        case "ArrowDown":
+          clearCanvas();
+          y = y + 10;
+          xChar += TAILLE_CHAR;
+          yChar = CHAR_FACE;
+          if(xChar >= 4*TAILLE_CHAR)
+            xChar = 0;
+          //ctx.fillRect(x, y, 50, 50);
+          ctx.drawImage(character, xChar, yChar, 128, 128, x, y, 128, 128);;
+          break;
+        case "ArrowLeft":
+          clearCanvas();
+          x -= 10;
+          xChar += TAILLE_CHAR;
+          yChar = CHAR_GAUCHE;
+          if(xChar >= 4*TAILLE_CHAR)
+            xChar = 0;
+          //ctx.fillRect(x, y, 50, 50);
+          ctx.drawImage(character, xChar, yChar, 128, 128, x, y, 128, 128);
+          break;
+        case "ArrowRight":
+          clearCanvas();
+          x += 10;
+          xChar += TAILLE_CHAR;
+          yChar = CHAR_DROIT;
+          if(xChar >= 4*TAILLE_CHAR)
+            xChar = 0;
+          //ctx.fillRect(x, y, 50, 50);
+          ctx.drawImage(character, xChar, yChar, 128, 128, x, y, 128, 128);
+          break;
+        case "Enter":
+          // Do something for "enter" or "return" key press.
+          break;
+        case "Escape":
+          // Do something for "esc" key press.
+          break;
+        default:
+          return; // Quit when this doesn't handle the key event.
+      }
+
+      // Consume the event for suppressing "double action".
+      event.preventDefault();
+    }, true);
+    </script>
